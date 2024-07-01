@@ -92,6 +92,8 @@ const energies_deck = `
 * 1 Water Energy
 `
 
+const cardname = `Pidgey FLF 75`
+
 describe('ptcgo-parser', () => {
   it('should ignore headlines', () => {
     const decklist = PTCGOParser.parse(exported_list)
@@ -271,6 +273,11 @@ it('should handle SilverTempest TG code exports', () => {
   const card = pick(decklist, 'Professor Burnet')
   expect(card.name).toBe('Professor Burnet')
   expect(card.ptcgoio.id).toBe('swsh12tg-TG26')
+})
+
+it('should return an ptcgoio id for a card definition', () => {
+	const card_id = PTCGOParser.parseCard(cardname)
+	expect(card_id).toBe('xy2-75')
 })
 
 it('should use S&M energy ids for basic energies', () => {
